@@ -33,6 +33,20 @@ class App extends Component {
     componentDidMount = async () => {
         await this.isEthereumBrowser()
         if (window.web3) {
+            const web3ProviderInst = window.web3.currentProvider
+
+            // detect Metamask account change
+            web3ProviderInst.on('accountsChanged', function (accounts) {
+                console.log('accountsChanges', accounts)
+                window.location.reload()
+            })
+
+            // detect Chain ID change
+            web3ProviderInst.on('chainChanged', function (chainId) {
+                console.log('chainChanged', chainId)
+                window.location.reload()
+            })
+
             await this.setAppState({ web3: window.web3 })
             await this.instantiateContracts()
         }
@@ -55,8 +69,11 @@ class App extends Component {
             // Get accounts, set web3 and currentAddress
             var web3 = this.state.web3
             web3.eth.defaultAccount = accounts[0]
+            const chainId = await web3.eth.net.getId()
+            console.log("chainId: ", chainId)
             await this.setAppState({
-                web3: web3,
+                web3,
+                chainId,
                 wallet: Object.assign({}, this.state.wallet, {
                     address: web3.eth.defaultAccount || AppState.currentAddress
                 })
@@ -85,15 +102,14 @@ class App extends Component {
 
     instantiateNFT = async () => {
         var instance
-        switch (configData.ENVIRONMENT) {
-            case 'GANACHE-CLI':
+        const chainId = this.state.chainId
+        switch (chainId) {
+            case 1337:
+            case 5777:
                 instance = await myNFT.deployed()
-                break;
-            case 'GOERLI':
-                instance = await myNFT.at(configData.CONTRACT_ADDRESS)
                 break;
             default:
-                instance = await myNFT.deployed()
+                instance = await myNFT.at(configData[chainId])
                 break;
         }
         return this.setNFTState({ instance: instance })
@@ -113,9 +129,6 @@ class App extends Component {
                 await this.setNFTState({ owner: owner })
             }
 
-            const ethBalance = await this.state.nft.instance.ethBalance()
-            await this.setNFTState({ ethBalance: this.state.web3.utils.fromWei(ethBalance, "ether") })
-
             const totalSupply = await this.state.nft.instance.totalSupply()
             if (totalSupply) {
                 await this.setNFTState({ supply: totalSupply.toString() })
@@ -130,6 +143,9 @@ class App extends Component {
             }
             const saleActiveStatus = await this.state.nft.instance.isSaleActive()
             await this.setNFTState({ isSaleActive: saleActiveStatus ? 'Yes' : 'No' })
+
+            const ethBalance = await this.state.nft.instance.ethBalance()
+            await this.setNFTState({ ethBalance: this.state.web3.utils.fromWei(ethBalance, "ether") })
         }
     }
 
@@ -141,6 +157,7 @@ class App extends Component {
         await this.setWalletState({ nft_balance: userNFTBalance.toString() })
 
         const userOwnedNFTs = await this.state.nft.instance.tokensOfOwner(this.state.wallet.address)
+        console.log("userOwnedNFTs: ", userOwnedNFTs)
         await this.setWalletState({ nfts: userOwnedNFTs.toString() })
     }
 

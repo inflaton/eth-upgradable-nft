@@ -1,0 +1,153 @@
+truffle migrate --network polygon
+
+
+Compiling your contracts...
+===========================
+✔ Fetching solc version list from solc-bin. Attempt #1
+✔ Fetching solc version list from solc-bin. Attempt #1
+> Everything is up to date, there is nothing to compile.
+
+
+
+Starting migrations...
+======================
+> Network name:    'polygon'
+> Network id:      80001
+> Block gas limit: 20000000 (0x1312d00)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x73e4def1d5eb367ddd09b2ab2719a8092292a4370d052b247ca5d4499ea6c462
+   > Blocks: 4            Seconds: 9
+   > contract address:    0x681ca3db0e16Dc67B978775553fA9506be7dE60e
+   > block number:        32713349
+   > block timestamp:     1677970338
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.431206442886358896
+   > gas used:            170942 (0x29bbe)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00042735500256413 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.00042735500256413 ETH
+
+
+2_MyNFT_V1_migration.js
+=======================
+
+   Deploying 'MyNFT'
+   -----------------
+   > transaction hash:    0xae04b2a26eb6ef099b914a211147b2237b0aeaa45e1e093a245095df8252559d
+   > Blocks: 4            Seconds: 9
+   > contract address:    0x8B4541F286212004D2BE59E51b59bda36b835218
+   > block number:        32713363
+   > block timestamp:     1677970368
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.424376080345376721
+   > gas used:            2686467 (0x28fe03)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.006716167540297005 ETH
+
+
+   Deploying 'ProxyAdmin'
+   ----------------------
+   > transaction hash:    0xd8cfced7e1e8b8fc62fba984efe5648e854e73508ccb65d0b6fe75f1246bbce8
+   > Blocks: 4            Seconds: 9
+   > contract address:    0x7619C640F04133820b461caa710BcdEf10E3c7cA
+   > block number:        32713373
+   > block timestamp:     1677970388
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.423166030338116421
+   > gas used:            484020 (0x762b4)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0012100500072603 ETH
+
+
+   Deploying 'TransparentUpgradeableProxy'
+   ---------------------------------------
+   > transaction hash:    0x33d24c70a466c9703981bd148ec249f30bffb7409ebfd0c2f3ed1cabae551122
+   > Blocks: 4            Seconds: 9
+   > contract address:    0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+   > block number:        32713381
+   > block timestamp:     1677970406
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.421200817826325146
+   > gas used:            786085 (0xbfea5)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.001965212511791275 ETH
+
+Deployed 0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.00989143005934858 ETH
+
+
+3_MyNFT_V2_migration.js
+=======================
+Existing Contract 0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+
+   Deploying 'MyNFTV2'
+   -------------------
+   > transaction hash:    0xecb9a96e2af87d46af079666eb3c069e34cb48b324d57d2c676825a301abc3d3
+   > Blocks: 6            Seconds: 13
+   > contract address:    0xF2F1791E9728fB162a2d7E585D2E1BEac50CeC02
+   > block number:        32713397
+   > block timestamp:     1677970440
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.414297172784903276
+   > gas used:            2732880 (0x29b350)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0068322000409932 ETH
+
+Upgraded 0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.0068322000409932 ETH
+
+
+4_MyNFT_V3_migration.js
+=======================
+Existing Contract 0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+
+   Deploying 'MyNFTV3'
+   -------------------
+   > transaction hash:    0x405639f5ea6a60f40b328ad861f9727fd420b5194b54e0fbc3e8c9c113058974
+   > Blocks: 5            Seconds: 13
+   > contract address:    0x3A73FcFBE46Db5a1CfC58ED466D6E00690741762
+   > block number:        32713420
+   > block timestamp:     1677970488
+   > account:             0xfD29611Beba1F849937aCEF4B36EfBc7C878B2ba
+   > balance:             68.407271705242750471
+   > gas used:            2742795 (0x29da0b)
+   > gas price:           2.500000015 gwei
+   > value sent:          0 ETH
+   > total cost:          0.006856987541141925 ETH
+
+Upgraded 0xbDe9130a72c451C184BaF891Ea17beD327Ab3276
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.006856987541141925 ETH
+
+
+Summary
+=======
+> Total deployments:   6
+> Final cost:          0.024007972644047835 ETH
