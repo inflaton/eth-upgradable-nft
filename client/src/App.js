@@ -19,7 +19,7 @@ import AppState from './App.state'
 import configData from "./config.json"
 
 // Contracts
-import MyNFT from './build/contracts/MyNFT.json'
+import MyNFT from './build/contracts/MyNFTV3.json'
 var contract = require("@truffle/contract")
 const myNFT = contract(MyNFT)
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -89,7 +89,7 @@ class App extends Component {
             case 'GANACHE-CLI':
                 instance = await myNFT.deployed()
                 break;
-            case 'ROPSTEN':
+            case 'GOERLI':
                 instance = await myNFT.at(configData.CONTRACT_ADDRESS)
                 break;
             default:
@@ -112,6 +112,10 @@ class App extends Component {
             if (owner) {
                 await this.setNFTState({ owner: owner })
             }
+
+            const ethBalance = await this.state.nft.instance.ethBalance()
+            await this.setNFTState({ ethBalance: this.state.web3.utils.fromWei(ethBalance, "ether") })
+
             const totalSupply = await this.state.nft.instance.totalSupply()
             if (totalSupply) {
                 await this.setNFTState({ supply: totalSupply.toString() })

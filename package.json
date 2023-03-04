@@ -7,7 +7,13 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "showVersions": "truffle version",
+    "compile": "truffle compile",
+    "size": "truffle run contract-size --checkMaxSize",
+    "deploy": "truffle migrate --reset",
+    "deploy:goerli": "truffle migrate --reset --network goerli",
+    "upgrade:goerli": "truffle migrate --network goerli",
+    "test": "truffle test"
   },
   "repository": {
     "type": "git",

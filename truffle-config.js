@@ -22,21 +22,10 @@ require('dotenv').config();
  */
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
-const MNEMONIC = process.env.MNENOMIC;
-const INFURA_KEY = process.env.INFURA_KEY;
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
-const ALCHEMY_NODE_URL = process.env.ALCHEMY_NODE_URL;
 
 module.exports = {
-  /**
-   * Networks define how you connect to your ethereum client and let you set the
-   * defaults web3 uses to send transactions. If you don't specify one truffle
-   * will spin up a development blockchain for you on port 9545 when you
-   * run `develop` or `test`. You can ask a truffle command to use a specific
-   * network from the command line, e.g
-   *
-   * $ truffle test --network <network-name>
-   */
+  contracts_directory: path.join(__dirname, "contracts"),
   contracts_build_directory: path.join(__dirname, "client/src/build/contracts"),
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -46,36 +35,43 @@ module.exports = {
     // options below to some value.
     //
     development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
+      host: process.env.DEV_CHAIN_HOST || '127.0.0.1', // Localhost (default: none)
+      port: process.env.DEV_CHAIN_PORT || 9545, // Standard Ethereum port (default: none)
+      network_id: '*', // Any network (default: none)
     },
-    // Another network with more advanced options...
-    // advanced: {
-    // port: 8777,             // Custom port
-    // network_id: 1342,       // Custom network
-    // gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
-    // gasPrice: 20000000000,  // 20 gwei (in wei) (default: 100 gwei)
-    // from: <address>,        // Account to send txs from (default: accounts[0])
-    // websocket: true        // Enable EventEmitter interface for web3 (default: false)
-    // },
-    // Useful for deploying to a public network.
-    // NB: It's important to wrap the provider as a function.
-    ropsten: {
-      //provider: () => new HDWalletProvider(MNEMONIC, `https://ropsten.infura.io/v3/${INFURA_KEY}`),
-      provider: () => new HDWalletProvider(MNEMONIC, ALCHEMY_NODE_URL),
-      network_id: 3,       // Ropsten's id
-      gas: 4000000,        // Ropsten has a lower block limit than mainnet
-      confirmations: 2,    // # of confs to wait between deployments. (default: 0)
-      timeoutBlocks: 500,  // # of blocks before a deployment times out  (minimum/default: 50)
-      skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
+
+    develop: {
+      port: 9545, // Standard Ethereum port (default: none)
     },
-    // Useful for private networks
-    // private: {
-    // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
-    // network_id: 2111,   // This network is yours, in the cloud.
-    // production: true    // Treats this network as if it was a public net. (default: false)
-    // }
+
+    goerli: {
+      provider: () => {
+        return new HDWalletProvider(
+          process.env.GOERLI_PRIVATE_KEY,
+          `https://goerli.infura.io/v3/${process.env.INFURA_API_KEY}`,
+        )
+      },
+      networkCheckTimeout: 30000,
+      network_id: 5,
+      confirmations: 2, // # of confs to wait between deployments. (default: 0)
+      timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true, // Skip dry run before migrations? (default: false for public nets )
+    },
+
+    polygon: {
+      provider: () => {
+        return new HDWalletProvider(
+          process.env.POLYGON_PRIVATE_KEY,
+          `https://polygon-mumbai.infura.io/v3/${process.env.INFURA_API_KEY}`,
+        )
+      },
+      networkCheckTimeout: 30000,
+      network_id: 80001,
+      gas: 8000000, // Gas sent with each transaction (default: ~6700000)
+      timeoutBlocks: 200, // # of blocks before a deployment times out  (minimum/default: 50)
+      skipDryRun: true, // Skip dry run before migrations? (default: false for public nets)
+    },
+
   },
   plugins: ["solidity-coverage", "truffle-plugin-verify"],
   api_keys: {
@@ -92,11 +88,11 @@ module.exports = {
       version: "^0.8",        // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
       settings: {          // See the solidity docs for advice about optimization and evmVersion
-       optimizer: {
-         enabled: true,
-         runs: 1000
-       },
-       evmVersion: "byzantium"
+        optimizer: {
+          enabled: true,
+          runs: 1000
+        },
+        // evmVersion: "byzantium"
       }
     }
   },

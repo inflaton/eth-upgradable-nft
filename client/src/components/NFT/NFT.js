@@ -9,6 +9,7 @@ class NFT extends React.Component {
         <ListGroup className="list-group-flush">
           <ListGroupItem>Address: {this.props.nft.address}</ListGroupItem>
           <ListGroupItem>Owner: {this.props.nft.owner}</ListGroupItem>
+          <ListGroupItem>ETH Balance: {this.props.nft.ethBalance}</ListGroupItem>
           <ListGroupItem>Price: {this.props.nft.nftPrice} ETH</ListGroupItem>
           <ListGroupItem>Current Supply: {this.props.nft.supply}</ListGroupItem>
           <ListGroupItem>Max Supply: {this.props.nft.maxSupply}</ListGroupItem>
