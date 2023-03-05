@@ -7,7 +7,7 @@ class Wallet extends React.Component {
       <Card bg={'success'} text={'white'} border="success">
         <Card.Header>User Wallet</Card.Header>
         <ListGroup className="list-group-flush">
-          <ListGroupItem>Chaiin ID: {this.props.wallet.chainId}</ListGroupItem>
+          <ListGroupItem>Chain ID: {this.props.wallet.chainId}</ListGroupItem>
           <ListGroupItem>Address: {this.props.wallet.address}</ListGroupItem>
           <ListGroupItem>ETH Balance: {this.props.wallet.ethBalance}</ListGroupItem>
           <ListGroupItem>NFT Balance: {this.props.wallet.nft_balance}</ListGroupItem>
