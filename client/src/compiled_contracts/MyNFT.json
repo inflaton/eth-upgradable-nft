@@ -24608,10 +24608,15 @@
       "links": {},
       "address": "0x1AA1Da66B3014B75298771922dDc0E9558E91844",
       "transactionHash": "0x5176b27315c7727b596b2906edc7d0fcffd4da509b23e40a9964c74f7e6a150c"
+    },
+    "80001": {
+      "events": {},
+      "links": {},
+      "address": "0x9f1B7Eb40269C0B278C0556953C9554A648d776B"
     }
   },
-  "schemaVersion": "3.4.13",
-  "updatedAt": "2023-03-05T03:00:33.047Z",
+  "schemaVersion": "3.4.4",
+  "updatedAt": "2023-03-05T03:28:05.820Z",
   "networkType": "ethereum",
   "devdoc": {
     "events": {

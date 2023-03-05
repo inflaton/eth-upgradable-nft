@@ -10,12 +10,9 @@
     "showVersions": "truffle version",
     "compile": "truffle compile",
     "size": "truffle run contract-size --checkMaxSize",
-    "deploy": "truffle migrate --reset",
-    "upgrade": "truffle migrate",
-    "deploy:goerli": "truffle migrate --reset --network goerli",
-    "upgrade:goerli": "truffle migrate --network goerli",
-    "deploy:polygon": "truffle migrate --reset --network polygon",
-    "upgrade:polygon": "truffle migrate --network polygon",
+    "deploy": "truffle migrate",
+    "deploy:goerli": "truffle migrate --network goerli",
+    "deploy:polygon": "truffle migrate --network polygon",
     "test": "truffle test"
   },
   "repository": {
