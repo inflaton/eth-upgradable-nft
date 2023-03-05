@@ -9,6 +9,11 @@
       "address": "0x32fC41c02EeBb5fe228Aa4F4EdC0839d7d169812",
       "txHash": "0xb93dfceffae1ab43d2640f659b6e82b988a80d2edd1a9d53027e8ba1814b45f9",
       "kind": "transparent"
+    },
+    {
+      "address": "0x27c0b71ff5820bc03cA56D4cd9522137C0d2D5FE",
+      "txHash": "0x65f3a88b7886f07a657bc6f13395441facf38a9cd547c2762d4943b7059456fa",
+      "kind": "transparent"
     }
   ],
   "impls": {
@@ -394,31 +399,31 @@
             "contract": "MyNFTV2",
             "label": "_tokenIdCounter",
             "type": "t_struct(Counter)2240_storage",
-            "src": "../project:/contracts/Migrations.sol:20"
+            "src": "../project:/contracts/MyNFTV2.sol:18"
           },
           {
             "contract": "MyNFTV2",
             "label": "_isSaleActive",
             "type": "t_bool",
-            "src": "../project:/contracts/Migrations.sol:20"
+            "src": "../project:/contracts/MyNFTV2.sol:21"
           },
           {
             "contract": "MyNFTV2",
             "label": "_pricePerToken",
             "type": "t_uint256",
-            "src": "../project:/contracts/Migrations.sol:20"
+            "src": "../project:/contracts/MyNFTV2.sol:22"
           },
           {
             "contract": "MyNFTV2",
             "label": "_maxSupply",
             "type": "t_uint256",
-            "src": "../project:/contracts/Migrations.sol:20"
+            "src": "../project:/contracts/MyNFTV2.sol:23"
           },
           {
             "contract": "MyNFTV2",
             "label": "_baseTokenURI",
             "type": "t_string_storage",
-            "src": "../project:/contracts/Migrations.sol:20"
+            "src": "../project:/contracts/MyNFTV2.sol:24"
           }
         ],
         "types": {

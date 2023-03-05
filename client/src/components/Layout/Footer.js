@@ -3,7 +3,7 @@ const Footer = () => {
   return (
     <>
       <footer className='text-center text-capitalize'>
-        copyright Arpit Khandelwal &copy; {year}
+        copyright Inflton &copy; {year}
       </footer>
     </>
   )
