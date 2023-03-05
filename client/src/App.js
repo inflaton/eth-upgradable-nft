@@ -19,10 +19,9 @@ import AppState from './App.state'
 import configData from "./config.json"
 
 // Contracts
-import MyNFT from './build/contracts/MyNFTV3.json'
+import MyNFT from './compiled_contracts/MyNFTV4.json'
 var contract = require("@truffle/contract")
 const myNFT = contract(MyNFT)
-const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 class App extends Component {
     constructor(props) {
@@ -73,8 +72,8 @@ class App extends Component {
             console.log("chainId: ", chainId)
             await this.setAppState({
                 web3,
-                chainId,
                 wallet: Object.assign({}, this.state.wallet, {
+                    chainId,
                     address: web3.eth.defaultAccount || AppState.currentAddress
                 })
             })
@@ -102,7 +101,7 @@ class App extends Component {
 
     instantiateNFT = async () => {
         var instance
-        const chainId = this.state.chainId
+        const chainId = this.state.wallet.chainId
         switch (chainId) {
             case 1337:
             case 5777:
@@ -157,7 +156,6 @@ class App extends Component {
         await this.setWalletState({ nft_balance: userNFTBalance.toString() })
 
         const userOwnedNFTs = await this.state.nft.instance.tokensOfOwner(this.state.wallet.address)
-        console.log("userOwnedNFTs: ", userOwnedNFTs)
         await this.setWalletState({ nfts: userOwnedNFTs.toString() })
     }
 
@@ -181,11 +179,9 @@ class App extends Component {
     }
 
     burnNFT = async () => {
-        // Retrieve first available token from user
         const nftId = parseInt(this.state.wallet.nfts.split(',')[0])
         try {
-            // Step-2 : Have the ERC20 contract execute transfer of NFT to blackhole address
-            await this.state.erc20.instance.burnToken(this.state.nft.address, nftId, ZERO_ADDRESS)
+            await this.state.nft.instance.burnToken(nftId)
         } catch (e) {
             // There is a known bug which sometimes causes this to fail during BN conversion
             // https://github.com/trufflesuite/truffle/issues/1729

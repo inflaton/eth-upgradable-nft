@@ -26,7 +26,7 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY;
 
 module.exports = {
   contracts_directory: path.join(__dirname, "contracts"),
-  contracts_build_directory: path.join(__dirname, "client/src/build/contracts"),
+  contracts_build_directory: path.join(__dirname, "client/src/compiled_contracts"),
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
